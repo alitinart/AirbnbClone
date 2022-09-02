@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -64,6 +65,13 @@ public class UserController {
         return new Response("User Found", null, 200, data);
     }
 
+    @GetMapping(path="/refresh")
+    private Response refreshToken(@RequestHeader("Authorization") String authToken) {
+        HashMap data = this.userService.refreshToken(authToken);
+
+        return new Response("Refreshed User", null, 200, data);
+    }
+
     @DeleteMapping(path = "/{id}")
     private Response deleteUserById(@PathVariable("id") String userId, @RequestHeader("Authorization") String authToken) {
         this.userService.deleteUserById(userId, authToken);
@@ -78,7 +86,7 @@ public class UserController {
         return new Response("User Deleted", null, 200, null);
     }
 
-    @PatchMapping
+    @PatchMapping(path = "/update")
     private Response updateUser(@RequestBody User user, @RequestHeader("Authorization") String authToken) {
         this.userService.updateUser(user, authToken);
         HashMap<String, User> data = new HashMap<>();
@@ -86,4 +94,5 @@ public class UserController {
 
         return new Response("User Updated", null, 200, data);
     }
+
 }

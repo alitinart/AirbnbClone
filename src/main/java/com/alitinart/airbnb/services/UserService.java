@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -112,11 +109,33 @@ public class UserService {
     }
 
     public void updateUser(User updatedUser, String authToken) {
-        User user = new JwtHandler().decodeToken(authToken);;
+        User user = new JwtHandler().decodeToken(authToken);
         if(!Objects.equals(updatedUser.getEmail(), user.getEmail())) {
             throw new IllegalCallerException("Forbidden");
         }
 
+        updatedUser.setPassword(BCrypt.hashpw(updatedUser.getPassword(), BCrypt.gensalt()));
         this.userRepo.save(updatedUser);
+    }
+
+    public HashMap refreshToken(String authToken) {
+        User user = new JwtHandler().decodeToken(authToken);
+        Optional<User> updatedUser = this.userRepo.findById(user.getId());
+
+        try {
+            JwtHandler generator = new JwtHandler();
+            ObjectMapper mapObject = new ObjectMapper();
+            Map hashedUser = mapObject.convertValue(updatedUser.get(), Map.class);
+            String token = generator.generateJwt(hashedUser);
+
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("token", token);
+            data.put("userData", updatedUser.get());
+
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalCallerException("Couldn't create token");
+        }
     }
 }

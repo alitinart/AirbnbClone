@@ -1,0 +1,47 @@
+.home_button {
+  position: fixed;
+  bottom: 2rem;
+  left: -5rem;
+  transition: $transition;
+  background-color: $primary-color;
+  color: white;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: $transition;
+  box-shadow: $box-shadow;
+
+  i {
+    font-size: $font-lg;
+    color: white;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-hover;
+  }
+}
+
+.shown {
+  transition: $transition;
+  left: 1.5rem;
+}
+
+@keyframes slideOut {
+  0% {
+    left: 1.5rem;
+  }
+
+  100% {
+    left: -5rem;
+  }
+}
+
+@media screen and (max-width: 826px) {
+  .home_button {
+    display: none;
+  }
+}

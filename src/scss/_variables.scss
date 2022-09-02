@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "CerealBold";
+  src: url("/src/scss/fonts/AirbnbCereal_W_Bd.otf");
+}
+@font-face {
+  font-family: "CerealLight";
+  src: url("/src/scss/fonts/AirbnbCereal_W_Lt.otf");
+}
+@font-face {
+  font-family: "CerealMedium";
+  src: url("/src/scss/fonts/AirbnbCereal_W_Md.otf");
+}
+
+$primary-color: #ff7977;
+$primary-contrast-color: #ff8684;
+$secondary-color: #444444;
+
+$font-normal: "CerealMedium";
+$font-light: "CerealLight";
+$font-bold: "CerealBold";
+
+$font-sm: 0.938rem;
+$font-nm: 1.05rem;
+$font-md: 1.5rem;
+$font-lg: 1.75rem;
+
+$border-radius: 5px;
+$round-border: 50px;
+$box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.15);
+$box-shadow-hover: 0px 8px 4px rgba(0, 0, 0, 0.15);
+$deep-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+
+$transition: 0.25s ease;

@@ -1,0 +1,99 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 0 3rem;
+}
+
+.listing_card {
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  transition: $transition;
+  height: fit-content;
+
+  &:hover {
+    box-shadow: $deep-shadow;
+    transform: translateY(-5px);
+  }
+
+  &__image {
+    border-radius: $border-radius;
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+  }
+
+  &__name {
+    font-size: 21px;
+    margin: 5px 0;
+  }
+  &__location {
+    font-family: $font-light;
+    margin-top: 5px;
+  }
+  &__availableDays {
+    color: gray;
+    font-family: $font-light;
+    margin: 5px 0;
+  }
+  &__price_rating {
+    display: flex;
+    justify-content: space-between;
+
+    &__price {
+      font-family: $font-bold;
+      span {
+        font-family: $font-light;
+      }
+      font-size: $font-md;
+    }
+
+    &__rating {
+      color: $primary-color;
+      font-size: $font-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1390px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 986px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 406px) {
+  .cards {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 334px) {
+  .cards {
+    padding: 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: 314px) {
+  .cards {
+    padding: 0 0.1rem;
+  }
+}

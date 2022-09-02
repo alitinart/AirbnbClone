@@ -1,0 +1,70 @@
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3rem;
+  margin: 1rem 0 2rem 0;
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    padding: 0 20px;
+    white-space: nowrap;
+
+    &::after {
+      content: " ";
+      width: 0%;
+      display: block;
+      position: absolute;
+      bottom: -5px;
+      height: 2px;
+      background-color: $primary-color;
+      transition: $transition;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      width: 100%;
+    }
+
+    img,
+    i {
+      margin-right: 10px;
+      font-size: $font-md;
+      color: $primary-color;
+    }
+
+    p {
+      font-size: $font-sm;
+    }
+  }
+}
+
+.active-option::after {
+  width: 100%;
+}
+
+@media screen and (max-width: 1155px) {
+  .filters {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    padding: 0 0.5rem;
+    &::-webkit-scrollbar {
+      margin-top: 1px;
+    }
+  }
+
+  .active-option {
+    border-bottom: 2px solid $primary-color;
+  }
+}
+
+@media screen and (max-width: 623px) {
+  .filters__option {
+    padding: 0 10px;
+  }
+}

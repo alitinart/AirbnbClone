@@ -88,7 +88,10 @@ export default function Navbar() {
               Logout
             </p>
           )}
-          <button className="navbar__account__accountButton">
+          <button
+            onClick={() => nav("/account")}
+            className="navbar__account__accountButton"
+          >
             <img src={PersonIcon} alt="Search Icon" />
           </button>
         </div>

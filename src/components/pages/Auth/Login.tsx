@@ -28,8 +28,9 @@ export default function Login() {
       .loginUser({ ...data })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        const decode = JSON.parse(atob(res.data.token.split(".")[1]));
 
-        dispatch(login({ token: res.data.token }));
+        dispatch(login({ token: res.data.token, data: decode }));
 
         setLoading(false);
         nav("/");
@@ -43,7 +44,7 @@ export default function Login() {
   return (
     <div className="login">
       <h1 className="page_title">
-        Login in into your <span className="primary-color">Airbnb</span> Account
+        Login in into your <span className="primary_color">Airbnb</span> Account
       </h1>
       {!loading ? (
         <form className="register__from" onSubmit={handleSubmit(onSubmit)}>

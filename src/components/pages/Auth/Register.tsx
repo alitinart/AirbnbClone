@@ -45,7 +45,7 @@ export default function Register() {
   return (
     <div className="register">
       <h1 className="page_title">
-        Create your <span className="primary-color">Airbnb</span> Account
+        Create your <span className="primary_color">Airbnb</span> Account
       </h1>
       {!loading ? (
         <form className="register__from" onSubmit={handleSubmit(onSubmit)}>

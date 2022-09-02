@@ -22,5 +22,23 @@ export const requests = {
       });
       return data;
     },
+    updateUser: async (newUser: User, token: string) => {
+      const { data } = await axios.patch(`${API_URL}/users/update`, newUser, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+    },
+    refreshData: async (token: string) => {
+      const { data } = await axios.get(`${API_URL}/users/refresh`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+    },
+  },
+  listingRequests: {
+    getAllListings: async () => {
+      const { data } = await axios.get(`${API_URL}/listings`);
+      return data;
+    },
   },
 };

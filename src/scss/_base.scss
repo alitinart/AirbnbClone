@@ -57,7 +57,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: relative;
 }
 .form_control {
-  margin-top: 5px;
+  margin-top: 15px;
   width: 100%;
   padding: 1rem 0.5rem;
   border-radius: $border-radius;
@@ -91,6 +91,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: $border-radius;
 }
 
+.text_center {
+  text-align: center;
+}
+
 .page_title {
   font-size: $font-lg;
   font-family: $font-light;
@@ -102,7 +106,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-bottom: 10px;
 }
 
-.primary-color {
+.primary_color {
   color: $primary-color;
 }
 

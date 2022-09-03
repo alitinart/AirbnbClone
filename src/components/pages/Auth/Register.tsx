@@ -48,7 +48,7 @@ export default function Register() {
         Create your <span className="primary_color">Airbnb</span> Account
       </h1>
       {!loading ? (
-        <form className="register__from" onSubmit={handleSubmit(onSubmit)}>
+        <form className="register__form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form_control__row">
             <input
               {...register("email")}
@@ -84,7 +84,7 @@ export default function Register() {
           <p className="form_redirect">
             Already have a account ? <Link to="/login">Login</Link>
           </p>
-          <button className="register__form__submit" type="submit">
+          <button className="form__submit" type="submit">
             Submit
           </button>
         </form>

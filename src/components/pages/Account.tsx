@@ -73,7 +73,7 @@ export default function Account() {
         <p>What can we do for you ?</p>
       </div>
       <div className="account__buttons">
-        <button>Add Listing</button>
+        <button onClick={() => nav("/add-listing")}>Add Listing</button>
         <button onClick={() => setDialog(true)}>Edit Profile</button>
       </div>
 
@@ -110,7 +110,7 @@ export default function Account() {
             placeholder="Retype Password"
             {...register("retype_password")}
           />
-          <button className="register__form__submit" type="submit">
+          <button className="form__submit" type="submit">
             Save
           </button>
         </form>

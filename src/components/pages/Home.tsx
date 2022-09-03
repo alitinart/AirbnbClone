@@ -59,7 +59,7 @@ export default function Home() {
       {listings.length > 0 ? (
         <div className="cards">
           {listings.map((listing) => {
-            return <ListingCard key={listing.name} {...listing} />;
+            return <ListingCard key={listing.locationName} {...listing} />;
           })}
         </div>
       ) : loading ? (

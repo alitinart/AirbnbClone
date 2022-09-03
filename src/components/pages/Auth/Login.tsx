@@ -65,7 +65,7 @@ export default function Login() {
           <p className="form_redirect">
             Don't have a account ? <Link to="/register">Register</Link>
           </p>
-          <button className="register__form__submit" type="submit">
+          <button className="form__submit" type="submit">
             Submit
           </button>
         </form>

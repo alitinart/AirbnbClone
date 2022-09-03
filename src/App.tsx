@@ -1,17 +1,20 @@
-import "./app.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { expiredToken, refresh } from "./store/userSlice";
+
 import Home from "./components/pages/Home";
 import Navbar from "./components/layout/Navbar";
 import Toolbar from "./components/layout/Toolbar";
 import Register from "./components/pages/Auth/Register";
 import Login from "./components/pages/Auth/Login";
 import HomeButton from "./components/layout/HomeButton";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { expiredToken, refresh } from "./store/userSlice";
 import Account from "./components/pages/Account";
+import AddListing from "./components/pages/AddListing";
+
+import "./app.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +58,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/account" element={<Account />}></Route>
+        <Route path="/add-listing" element={<AddListing />}></Route>
       </Routes>
       <HomeButton />
       <Toolbar />

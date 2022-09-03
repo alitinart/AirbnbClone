@@ -85,10 +85,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: translateY(-5px);
   }
 }
-.register__form__submit {
+.form_control__item {
+  margin: 30px 10px 0 0;
+}
+.form__submit {
   width: 100%;
   margin-top: 20px;
   border-radius: $border-radius;
+}
+.form_control__file {
+  margin-top: 20px;
+  label {
+    background-color: $primary-color;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    border-radius: $border-radius;
+    transition: $transition;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      box-shadow: $box-shadow;
+      transform: translateY(-5px);
+    }
+  }
 }
 
 .text_center {

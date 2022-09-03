@@ -15,7 +15,7 @@ public class Listing {
     @Id
     private String id;
 
-    private String title;
+    private String locationName;
     private Number price;
     private List<Number> ratings;
     private String location;
@@ -25,8 +25,8 @@ public class Listing {
     private HashMap<String, Number> rooms;
     private List<String> tags;
 
-    public Listing(String title, Number price, List<Number> ratings, String location, String availableDates, String description, String author, HashMap<String, Number> rooms, List<String> tags) {
-        this.title = title;
+    public Listing(String locationName, Number price, List<Number> ratings, String location, String availableDates, String description, String author, HashMap<String, Number> rooms, List<String> tags) {
+        this.locationName = locationName;
         this.price = price;
         this.ratings = ratings;
         this.location = location;

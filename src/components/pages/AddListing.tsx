@@ -12,7 +12,8 @@ export default function AddListing() {
     { name: "Living Rooms", count: 0 },
     { name: "Balconies", count: 0 },
   ]);
-  const [images, setImage] = useState([]);
+  const [images, setImages] = useState<any>([]);
+  const [imagesBlob, setImagesBlob] = useState<any>([]);
 
   const add = (index: number) => {
     let roomsChanged = rooms.slice();
@@ -41,6 +42,32 @@ export default function AddListing() {
 
   const onSubmit = async (data: any) => {
     console.log(data);
+  };
+
+  const imageUpload = async (e: any) => {
+    let filesObject = e.target.files;
+
+    let files = Object.keys(filesObject).map((key) => filesObject[key]);
+    setImagesBlob(files);
+
+    files.map((file: any) => {
+      let reader = new FileReader();
+      let url = reader.readAsDataURL(file);
+
+      reader.onloadend = (e) => {
+        let imagesChanged = images.slice();
+        imagesChanged.push(reader.result);
+
+        setImages(imagesChanged);
+      };
+    });
+  };
+
+  const removeImage = (index: number) => {
+    let imagesChanged = images.slice();
+    imagesChanged.splice(index, 1);
+
+    setImages(imagesChanged);
   };
 
   return (
@@ -115,21 +142,19 @@ export default function AddListing() {
               {...register("image")}
               accept="image/png, image/gif, image/jpeg"
               hidden
-              multiple
-              onChange={(e) => {
-                let files: any = e.target.files;
-                let key_value_pair: any = Object.keys(files).map(
-                  (key) => files[key]
-                );
-                console.log(key_value_pair);
-                setImage(key_value_pair);
-              }}
+              onChange={imageUpload}
               id="file_upload"
             />
           </div>
           <div className="listing_images">
-            {images.map((image) => {
-              return <img src={image} />;
+            {images.map((image: any, index: number) => {
+              return (
+                <img
+                  onClick={() => removeImage(index)}
+                  key={index}
+                  src={image}
+                />
+              );
             })}
           </div>
           <button className="form__submit">Save</button>

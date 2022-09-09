@@ -18,22 +18,24 @@ public class Listing {
     private String locationName;
     private Number price;
     private List<Number> ratings;
-    private String location;
     private String availableDates;
     private String description;
     private String author;
+    private List<String> images;
     private HashMap<String, Number> rooms;
-    private List<String> tags;
+//    private List<String> tags;
 
-    public Listing(String locationName, Number price, List<Number> ratings, String location, String availableDates, String description, String author, HashMap<String, Number> rooms, List<String> tags) {
+    public Listing(String locationName, Number price, List<Number> ratings, String availableDates, String description, String author, HashMap<String, Number> rooms
+//            , List<String> tags
+    ) {
         this.locationName = locationName;
         this.price = price;
         this.ratings = ratings;
-        this.location = location;
         this.availableDates = availableDates;
         this.description = description;
         this.author = author;
         this.rooms = rooms;
-        this.tags = tags;
+//        this.tags = tags;
     }
+
 }

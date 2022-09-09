@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Listing from "../../models/listing.model";
 import AddRoom from "../elements/AddRoom";
 
 export default function AddListing() {
@@ -19,7 +20,6 @@ export default function AddListing() {
     let roomsChanged = rooms.slice();
     roomsChanged[index].count++;
     setRooms(roomsChanged);
-    console.log(rooms);
   };
 
   const remove = (index: number) => {
@@ -29,7 +29,6 @@ export default function AddListing() {
     }
     roomsChanged[index].count--;
     setRooms(roomsChanged);
-    console.log(rooms);
   };
 
   const nav = useNavigate();
@@ -40,8 +39,44 @@ export default function AddListing() {
     }
   }, []);
 
+  const formatDate = (date: String) => {
+    let dateData: any = date.split("-");
+    let dateObject = new Date(dateData);
+
+    let month = dateObject.toLocaleString("default", { month: "short" });
+    let day = dateObject.toLocaleString("default", { day: "numeric" });
+
+    return { month, day };
+  };
+
   const onSubmit = async (data: any) => {
     console.log(data);
+
+    let startDate = formatDate(data.startDate);
+    let endDate = formatDate(data.endDate);
+
+    let availableDates = `${startDate.month} ${startDate.day} - ${
+      startDate.month === endDate.month
+        ? endDate.day
+        : `${endDate.month} ${endDate.day}}`
+    }`;
+
+    let roomsReturned = {
+      bedrooms: rooms[0].count,
+      kitchens: rooms[1].count,
+      bathrooms: rooms[2].count,
+      livingRooms: rooms[3].count,
+      balconies: rooms[4].count,
+    };
+
+    const newListing: Listing = {
+      availableDates,
+      images,
+      locationName: data.locationName,
+      price: data.price,
+      description: data.description,
+      rooms: roomsReturned,
+    };
   };
 
   const imageUpload = async (e: any) => {
@@ -80,8 +115,9 @@ export default function AddListing() {
           <input
             type="text"
             className="form_control"
-            {...register("name")}
+            {...register("locationName")}
             placeholder="Location Name"
+            required
           />
           <textarea
             className="form_control"
@@ -89,6 +125,7 @@ export default function AddListing() {
             rows={12}
             {...register("description")}
             placeholder="Description"
+            required
           ></textarea>
           <div className="price_input">
             <input
@@ -96,6 +133,7 @@ export default function AddListing() {
               className="form_control"
               placeholder="Price per night"
               {...register("price")}
+              required
             />
             <i className="bi bi-currency-dollar"></i>
           </div>
@@ -107,6 +145,7 @@ export default function AddListing() {
                 className="form_control"
                 {...register("startDate")}
                 type={"date"}
+                required
               />
             </div>
             <div className="form_control__item">
@@ -116,9 +155,11 @@ export default function AddListing() {
                 className="form_control"
                 {...register("endDate")}
                 type={"date"}
+                required
               />
             </div>
           </div>
+          {/* <input type="text" className="form_control" placeholder="Tags" /> */}
         </div>
         <div className="add_listing__right">
           <div className="add_rooms">
@@ -139,11 +180,12 @@ export default function AddListing() {
             <label htmlFor="file_upload">Upload Images</label>
             <input
               type="file"
-              {...register("image")}
+              {...register("images")}
               accept="image/png, image/gif, image/jpeg"
               hidden
               onChange={imageUpload}
               id="file_upload"
+              required
             />
           </div>
           <div className="listing_images">

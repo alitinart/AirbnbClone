@@ -1,8 +1,7 @@
 export default interface Listing {
   id?: string;
-  image: string;
+  images: string[];
   locationName: string;
-  location?: string;
   availableDates: string;
   description: string;
   price: number;

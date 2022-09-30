@@ -21,6 +21,7 @@ public class ListingService {
     }
 
     public void saveListing(Listing listing, String authToken)  {
+        System.out.println(listing);
         User user = new JwtHandler().decodeToken(authToken);
 
         if(listing.getAuthor() == null) {
@@ -53,8 +54,8 @@ public class ListingService {
         return this.listingRepo.findListingsByAuthor(authorId);
     }
 
-        public void deleteListingById(String id, String authToken) {
-            Optional<Listing> listing = this.listingRepo.findById(id);
+    public void deleteListingById(String id, String authToken) {
+        Optional<Listing> listing = this.listingRepo.findById(id);
         if(listing.isEmpty()) {
             throw new IllegalStateException("No listing found with that id");
         }

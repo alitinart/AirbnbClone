@@ -22,7 +22,7 @@ public class ListingController {
     }
 
     @GetMapping
-    public Response getAllListings() {
+        public Response getAllListings() {
         List<Listing> listings = this.listingService.getAllListings();
         HashMap<String, List<Listing>> data = new HashMap<>();
         data.put("listings", listings);

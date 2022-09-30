@@ -2,10 +2,10 @@ import * as React from "react";
 import Listing from "../../models/listing.model";
 import ListingCard from "../elements/ListingCard";
 
-import { useLocation } from "react-router-dom";
 import FilterOption from "../elements/FilterOption";
 import { requests } from "../../services/request.provider";
 import Loader from "../elements/Loader";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [listings, setListings] = React.useState<Listing[]>([]);
@@ -14,9 +14,14 @@ export default function Home() {
   React.useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
-      const res = await requests.listingRequests.getAllListings();
-      setLoading(false);
-      setListings(res.data.listings);
+      try {
+        const res = await requests.listingRequests.getAllListings();
+        setLoading(false);
+        setListings(res.data.listings);
+        console.log(res);
+      } catch (e) {
+        toast.error("Could not fetch listings. Check your internet connection");
+      }
     };
 
     fetchListings();

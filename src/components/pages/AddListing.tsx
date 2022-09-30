@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Listing from "../../models/listing.model";
+import { requests } from "../../services/request.provider";
 import AddRoom from "../elements/AddRoom";
 
 export default function AddListing() {
@@ -77,6 +79,18 @@ export default function AddListing() {
       description: data.description,
       rooms: roomsReturned,
     };
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return toast.error("No token provided");
+
+      await requests.listingRequests.addListing(newListing, token);
+
+      nav("/");
+    } catch (e: any) {
+      console.log(e);
+      toast.error(e.message);
+    }
   };
 
   const imageUpload = async (e: any) => {

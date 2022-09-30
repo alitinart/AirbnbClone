@@ -1,4 +1,5 @@
 import axios from "axios";
+import Listing from "../models/listing.model";
 import User from "../models/user.model";
 
 const API_URL = "http://localhost:8080/api/v1";
@@ -38,6 +39,15 @@ export const requests = {
   listingRequests: {
     getAllListings: async () => {
       const { data } = await axios.get(`${API_URL}/listings`);
+      return data;
+    },
+    addListing: async (listing: Listing, token: string) => {
+      const { data } = await axios.post(`${API_URL}/listings`, listing, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return data;
     },
   },

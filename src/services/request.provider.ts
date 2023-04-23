@@ -2,7 +2,7 @@ import axios from "axios";
 import Listing from "../models/listing.model";
 import User from "../models/user.model";
 
-const API_URL = "http://localhost:8080/api/v1";
+const API_URL = "https://airbnb-clone-api-b7mq.onrender.com/api/v1";
 
 export const requests = {
   userRequests: {

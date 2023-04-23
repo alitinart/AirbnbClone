@@ -1,14 +1,9 @@
 #
 # Build stage
 #
-FROM maven:3.8.2-jdk-11 AS build
-COPY . .
-
-#
-# Package stage
-#
-FROM openjdk:11-jdk-slim
-COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar demo.jar
-# ENV PORT=8080
+FROM openjdk:17.0.6
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","demo.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
